@@ -7,6 +7,12 @@ ENV/
 env.bak/
 churn.bak/
 
+# MongoDB
+import_csv.py
+
+# Notebook Checkpoints
+.ipynb_checkpoints
+
 
 # Distribution / packaging
 .Python
