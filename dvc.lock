@@ -20,3 +20,23 @@ stages:
       hash: md5
       md5: 5a482e202d692c9801acc6491fdfc6ad
       size: 207
+  data_validation:
+    cmd: python src/customer_churn/pipelines/pipe_02_data_validation.py
+    deps:
+    - path: artifacts/data_ingestion/churndb.csv
+      hash: md5
+      md5: caa85ee7b832ef9b526b85bdd3619171
+      size: 7733862
+    - path: config/config.yaml
+      hash: md5
+      md5: 53f2958f2b7e0e558d658c80767d11ab
+      size: 996
+    - path: src/customer_churn/pipelines/pipe_02_data_validation.py
+      hash: md5
+      md5: 8f0323b801e2732b437fefb530ce9a4d
+      size: 2370
+    outs:
+    - path: artifacts/data_validation/status.json
+      hash: md5
+      md5: 536dfc3f0c562ae74b2f17d8faf8c6e3
+      size: 110

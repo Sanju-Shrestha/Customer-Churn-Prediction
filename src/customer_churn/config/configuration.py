@@ -1,6 +1,6 @@
 from src.customer_churn.utils.commons import read_yaml, create_directories
 from src.customer_churn.constants import *
-from src.customer_churn.entity.config_entity import DataIngestionConfig
+from src.customer_churn.entity.config_entity import *
 
 # Creating a Configuration Manager class to manage configuration
 class ConfigurationManager:
@@ -34,3 +34,20 @@ class ConfigurationManager:
         )
 
         return data_ingestion_config
+
+# Data Validation Config Manager 
+
+    def get_data_validation_config(self) -> DataValidationConfig:
+        config = self.config.data_validation
+        schema = self.schema.COLUMNS
+
+        create_directories([config.root_dir])
+
+        data_validation_config = DataValidationConfig(
+            root_dir=config.root_dir,
+            status_file=config.status_file,
+            data_source=config.data_source,
+            all_schema=schema,
+            critical_columns=config.critical_columns
+        )
+        return data_validation_config
