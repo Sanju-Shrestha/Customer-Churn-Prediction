@@ -5,3 +5,34 @@ data_ingestion:
   mongo_uri: mongodb+srv://username:password@mychurndb.bjfry.mongodb.net/
   database_name: customer_churn
   collection_name: transformed_churndb
+
+
+data_validation:
+  root_dir: artifacts/data_validation
+  data_source: artifacts/data_ingestion/churndb.csv
+  status_file: artifacts/data_validation/status.json
+  critical_columns:
+    - 'age'
+    - 'gender'
+    - 'region_category'
+    - 'membership_category'
+    - 'joined_through_referral'
+    - 'preferred_offer_types'
+    - 'medium_of_operation'
+    - 'internet_option'
+    - 'recency'
+    - 'avg_time_spent'
+    - 'monetary'
+    - 'frequency'
+    - 'points_in_wallet' 
+    - 'used_special_discount'
+    - 'offer_application_preference'
+    - 'past_complaint'
+    - 'complaint_status'
+    - 'feedback'
+    - 'churn_risk_score'
+    - 'tenure_months'
+    - 'visit_hour' 
+    - 'login_spend_ratio'
+    - 'login_transaction_ratio'
+
