@@ -4,7 +4,7 @@ import sys
 import logging
 
 # Logfile name is defined using the current date and time
-log_file_name = f'{datetime.now().strftime('%d_%m_%y_%H_%M_%S')}.log'
+log_file_name = f"{datetime.now().strftime('%d_%m_%y_%H_%M_%S')}.log"
 
 # Assign path to the logfile
 log_file_path = os.path.join(os.getcwd(),'logs', log_file_name)
@@ -24,4 +24,4 @@ logging.basicConfig(
 
 )
 
-logger = logging.getlogger('customer-churn')
+logger = logging.getLogger('customer-churn')

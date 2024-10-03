@@ -33,3 +33,16 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+
+# Job artifacts
+artifacts/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+.dvc/cache
+
+# Log files
+logs/

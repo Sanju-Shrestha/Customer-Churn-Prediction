@@ -1,8 +1,9 @@
 import os
 # Exception for handling Box value errors
 from box.exceptions import BoxValueError
+import sys
 import yaml
-from src.churn import logging
+from src.customer_churn import logging
 import json
 import joblib
 # Decorator for runtime type checking
