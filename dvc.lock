@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: d625240f867cbb8e74d3bc24d077b6d7
-      size: 1729
+      md5: 87b131938bf7970ca79309257b74714e
+      size: 2039
     - path: src/customer_churn/pipelines/pipe_01_data_ingestion.py
       hash: md5
       md5: dda2ce69c8e3a9eb775c5aa9037c0dea
@@ -18,8 +18,8 @@ stages:
       size: 7733862
     - path: artifacts/data_ingestion/metadata.json
       hash: md5
-      md5: 8c6dd04ede9301f9ac3e6d6abc6d085a
-      size: 207
+      md5: 7ca03c17987b30451ac31b568e08b699
+      size: 206
   data_validation:
     cmd: python src/customer_churn/pipelines/pipe_02_data_validation.py
     deps:
@@ -29,8 +29,8 @@ stages:
       size: 7733862
     - path: config/config.yaml
       hash: md5
-      md5: d625240f867cbb8e74d3bc24d077b6d7
-      size: 1729
+      md5: 87b131938bf7970ca79309257b74714e
+      size: 2039
     - path: src/customer_churn/pipelines/pipe_02_data_validation.py
       hash: md5
       md5: 8f0323b801e2732b437fefb530ce9a4d
@@ -45,8 +45,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: d625240f867cbb8e74d3bc24d077b6d7
-      size: 1729
+      md5: 87b131938bf7970ca79309257b74714e
+      size: 2039
     - path: src/customer_churn/pipelines/pipe_03_data_transformation.py
       hash: md5
       md5: be8adc1e95c65217c5f7a9b181c3c1d9
@@ -76,3 +76,19 @@ stages:
       hash: md5
       md5: dcb152eaf4111c8fd9a59f8acbd516ea
       size: 16665
+  model_training:
+    cmd: python src/customer_churn/pipelines/pipe_04_model_trainer.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: e74ae3423972064fc7aa60d703fb5eb3
+      size: 2039
+    - path: src/customer_churn/pipelines/pipe_04_model_trainer.py
+      hash: md5
+      md5: 1f56946e6c53ccccfebcd37988c10670
+      size: 1695
+    outs:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: b48776f59bb21bbf74965c3ac0dd8120
+      size: 1045388

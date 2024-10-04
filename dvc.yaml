@@ -30,3 +30,12 @@ stages:
       - artifacts/data_transformation/y_train.csv
       - artifacts/data_transformation/X_val_transformed.joblib
       - artifacts/data_transformation/y_val.csv
+
+  model_training:
+    cmd: python src/customer_churn/pipelines/pipe_04_model_trainer.py
+    deps:
+      - src/customer_churn/pipelines/pipe_04_model_trainer.py
+      - config/config.yaml
+
+    outs:
+      - artifacts/model_trainer/model.joblib
