@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 53f2958f2b7e0e558d658c80767d11ab
-      size: 996
+      md5: d625240f867cbb8e74d3bc24d077b6d7
+      size: 1729
     - path: src/customer_churn/pipelines/pipe_01_data_ingestion.py
       hash: md5
       md5: dda2ce69c8e3a9eb775c5aa9037c0dea
@@ -18,7 +18,7 @@ stages:
       size: 7733862
     - path: artifacts/data_ingestion/metadata.json
       hash: md5
-      md5: 5a482e202d692c9801acc6491fdfc6ad
+      md5: 8c6dd04ede9301f9ac3e6d6abc6d085a
       size: 207
   data_validation:
     cmd: python src/customer_churn/pipelines/pipe_02_data_validation.py
@@ -29,8 +29,8 @@ stages:
       size: 7733862
     - path: config/config.yaml
       hash: md5
-      md5: 53f2958f2b7e0e558d658c80767d11ab
-      size: 996
+      md5: d625240f867cbb8e74d3bc24d077b6d7
+      size: 1729
     - path: src/customer_churn/pipelines/pipe_02_data_validation.py
       hash: md5
       md5: 8f0323b801e2732b437fefb530ce9a4d
@@ -40,3 +40,39 @@ stages:
       hash: md5
       md5: 536dfc3f0c562ae74b2f17d8faf8c6e3
       size: 110
+  data_transformation:
+    cmd: python src/customer_churn/pipelines/pipe_03_data_transformation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: d625240f867cbb8e74d3bc24d077b6d7
+      size: 1729
+    - path: src/customer_churn/pipelines/pipe_03_data_transformation.py
+      hash: md5
+      md5: be8adc1e95c65217c5f7a9b181c3c1d9
+      size: 2766
+    outs:
+    - path: artifacts/data_transformation/X_test_transformed.joblib
+      hash: md5
+      md5: 7e6c8b14a571d25416e4bf7e7d9e9347
+      size: 976865
+    - path: artifacts/data_transformation/X_train_transformed.joblib
+      hash: md5
+      md5: e468b57d78a3e291e3e10bd7e50fc650
+      size: 4557585
+    - path: artifacts/data_transformation/X_val_transformed.joblib
+      hash: md5
+      md5: 4b3563a438f487bb010b7ecc39a586ad
+      size: 976865
+    - path: artifacts/data_transformation/y_test.csv
+      hash: md5
+      md5: 407443a81fe00eda69c230fbb6a7ebf1
+      size: 16665
+    - path: artifacts/data_transformation/y_train.csv
+      hash: md5
+      md5: 1d0c5f727ce6c61d6f665749de13fed3
+      size: 77700
+    - path: artifacts/data_transformation/y_val.csv
+      hash: md5
+      md5: dcb152eaf4111c8fd9a59f8acbd516ea
+      size: 16665
