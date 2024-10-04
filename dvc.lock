@@ -5,8 +5,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 87b131938bf7970ca79309257b74714e
-      size: 2039
+      md5: cf16e73725276e6b70618148835bbb08
+      size: 2446
     - path: src/customer_churn/pipelines/pipe_01_data_ingestion.py
       hash: md5
       md5: dda2ce69c8e3a9eb775c5aa9037c0dea
@@ -18,7 +18,7 @@ stages:
       size: 7733862
     - path: artifacts/data_ingestion/metadata.json
       hash: md5
-      md5: 7ca03c17987b30451ac31b568e08b699
+      md5: 5d1bcf16e6324155675c427734774b05
       size: 206
   data_validation:
     cmd: python src/customer_churn/pipelines/pipe_02_data_validation.py
@@ -29,8 +29,8 @@ stages:
       size: 7733862
     - path: config/config.yaml
       hash: md5
-      md5: 87b131938bf7970ca79309257b74714e
-      size: 2039
+      md5: cf16e73725276e6b70618148835bbb08
+      size: 2446
     - path: src/customer_churn/pipelines/pipe_02_data_validation.py
       hash: md5
       md5: 8f0323b801e2732b437fefb530ce9a4d
@@ -45,8 +45,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: 87b131938bf7970ca79309257b74714e
-      size: 2039
+      md5: cf16e73725276e6b70618148835bbb08
+      size: 2446
     - path: src/customer_churn/pipelines/pipe_03_data_transformation.py
       hash: md5
       md5: be8adc1e95c65217c5f7a9b181c3c1d9
@@ -81,8 +81,8 @@ stages:
     deps:
     - path: config/config.yaml
       hash: md5
-      md5: e74ae3423972064fc7aa60d703fb5eb3
-      size: 2039
+      md5: cf16e73725276e6b70618148835bbb08
+      size: 2446
     - path: src/customer_churn/pipelines/pipe_04_model_trainer.py
       hash: md5
       md5: 1f56946e6c53ccccfebcd37988c10670
@@ -92,3 +92,27 @@ stages:
       hash: md5
       md5: b48776f59bb21bbf74965c3ac0dd8120
       size: 1045388
+  model_evaluation:
+    cmd: python src/customer_churn/pipelines/pipe_05_model_evaluation.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: cf16e73725276e6b70618148835bbb08
+      size: 2446
+    - path: src/customer_churn/pipelines/pipe_05_model_evaluation.py
+      hash: md5
+      md5: 9f56ae8b72fc9ea79e37d4f739b30bd3
+      size: 1640
+    outs:
+    - path: artifacts/model_evaluation/evaluation_metrics.json
+      hash: md5
+      md5: 50f356a4439f53f3ae3c0456712961f7
+      size: 220
+    - path: artifacts/model_evaluation/pr_curve.png
+      hash: md5
+      md5: 4e7a19e55debabeac1949eeaf266284f
+      size: 32189
+    - path: artifacts/model_evaluation/roc_curve.png
+      hash: md5
+      md5: 7c42615df425a8326f78c01361a7dde2
+      size: 44226
