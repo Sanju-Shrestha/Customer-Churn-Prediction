@@ -4,6 +4,7 @@ from src.customer_churn.pipelines.pipe_02_data_validation import DataValidationP
 from src.customer_churn.pipelines.pipe_03_data_transformation import DataTransformationPipeline
 from src.customer_churn.pipelines.pipe_04_model_trainer import ModelTrainerPipeline
 from src.customer_churn.pipelines.pipe_05_model_evaluation import ModelEvaluationPipeline
+from src.customer_churn.pipelines.pipe_06_model_validation import ModelValidationPipeline
 
 ELEMENT_01_NAME = "DATA INGESTION ELEMENT"
 try:
@@ -51,6 +52,16 @@ try:
     model_evaluation_pipeline = ModelEvaluationPipeline()
     model_evaluation_pipeline.run()
     logging.info(f"## =============== {ELEMENT_05_NAME} Terminated Successfully!=================\n\nx************************x")
+except Exception as e:
+    logging.exception(e)
+    raise e
+
+ELEMENT_06_NAME = "MODEL VALIDATION ELEMENT"
+try:
+    logging.info(f"## =================== {ELEMENT_06_NAME} Started! ========================##")
+    model_validation_pipeline = ModelValidationPipeline()
+    model_validation_pipeline.run()
+    logging.info(f"## =============== {ELEMENT_06_NAME} Terminated Successfully!=================\n\nx************************x")
 except Exception as e:
     logging.exception(e)
     raise e

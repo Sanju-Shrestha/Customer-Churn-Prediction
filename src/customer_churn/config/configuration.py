@@ -120,3 +120,27 @@ class ConfigurationManager:
         )
 
         return model_evaluation_config
+
+# Model Validation Config Manager
+    def get_model_validation_config(self) -> ModelValidationConfig:
+        config = self.config.model_validation
+        params = self.params.LGBMClassifier  # Ensure correct parameter usage
+        schema = self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_validation_config = ModelValidationConfig(
+            root_dir=config.root_dir,
+            model_path=config.model_path,
+            test_data_path=config.test_data_path,
+            test_target_variable=config.test_target_variable,
+            metric_file_name=config.metric_file_name,
+            all_params=params,
+            target_column=schema.name, # Set target_column
+
+            # mlflow 
+            mlflow_uri= config.mlflow_uri
+
+        )
+
+        return model_validation_config

@@ -50,3 +50,14 @@ stages:
       - artifacts/model_evaluation/pr_curve.png
       - artifacts/model_evaluation/roc_curve.png
       - artifacts/model_evaluation/evaluation_metrics.json
+
+  model_validation:
+    cmd: python src/customer_churn/pipelines/pipe_06_model_validation.py
+    deps:
+      - src/customer_churn/pipelines/pipe_06_model_validation.py
+      - config/config.yaml
+
+    outs:
+      - artifacts/model_validation/pr_curve.png
+      - artifacts/model_validation/roc_curve.png
+      - artifacts/model_validation/validation_metrics.json
