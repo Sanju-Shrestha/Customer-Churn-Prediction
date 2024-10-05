@@ -2,7 +2,6 @@
 
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/streamlit)](https://pypi.org/project/dagshub/)
 
-**Problem statement**: 
 Customer churn is a critical challenge for businesses, as it directly impacts revenue and customer retention strategies. The churn rate measures the percentage of customers who stop using a company's products or services over a certain time period. To help businesses proactively reduce churn, we can leverage machine learning models to predict which customers are likely to leave. This prediction is based on a combination of user demographic data, behavior patterns, and transaction history.
 
 In this case, each user is assigned a churn risk score ranging from 1 to 5, where a higher score indicates a greater likelihood of churn. This score is updated daily for users who have made at least one transaction, and it helps businesses focus their retention efforts more effectively.
