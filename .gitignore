@@ -1,11 +1,11 @@
 # Environemnts
-churn/
-.churn/
+churnn/
+.churnn/
 env/
 .env/
 ENV/
 env.bak/
-churn.bak/
+churnn.bak/
 
 # MongoDB
 import_csv.py
@@ -46,3 +46,4 @@ __pycache__/
 
 # Log files
 logs/
+

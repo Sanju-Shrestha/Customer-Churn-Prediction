@@ -1,7 +1,10 @@
+# v0.0.2
+# Logistic Regression Model
+
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import StandardScaler
-from lightgbm import LGBMClassifier
+from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, classification_report, confusion_matrix
 import joblib
 import os
@@ -28,18 +31,11 @@ class ModelTrainerConfig:
     train_data_path: Path
     val_data_path: Path
     model_name: str
-    # LGBMClassifier 
-    boosting_type: str
-    max_depth: int
-    learning_rate: float
-    n_estimators: int
-    objective: str
-    min_split_gain: float
-    min_child_weight: float
-    reg_alpha: float
-    reg_lambda: float
-    random_state: int
-    min_child_samples: int
+    # LogisticRegression
+    solver: str
+    penalty: str
+    C: float
+    max_iter: int
     # mlflow
     mlflow_uri: str
 
@@ -74,7 +70,7 @@ class ConfigurationManager:
     def get_model_trainer_config(self) -> ModelTrainerConfig:
         # Get the model trainer configuration 
         config = self.config.model_trainer
-        params = self.params.LGBMClassifier
+        params = self.params.LogisticRegression
         create_directories([config.root_dir])
         # Create and return the Model Trainer Config object
         model_trainer_config = ModelTrainerConfig(
@@ -83,19 +79,11 @@ class ConfigurationManager:
             val_data_path=config.val_data_path,
             model_name=config.model_name,
 
-            # LGBMClassifier hyperparameters
-            boosting_type=params['boosting_type'],
-            max_depth=params['max_depth'],
-            learning_rate=params['learning_rate'],
-            n_estimators=params['n_estimators'],
-            objective=params['objective'],
-            min_split_gain=params['min_split_gain'],
-            min_child_weight=params['min_child_weight'],
-            reg_alpha=params['reg_alpha'],
-            reg_lambda=params['reg_lambda'],
-            random_state=params['random_state'],
-            min_child_samples=params['min_child_samples'],
-
+            # LogisticRegression hyperparameters
+            solver=params['solver'],
+            penalty=params['penalty'],
+            C=params['C'],
+            max_iter=params['max_iter'],
             # mlflow 
             mlflow_uri= config.mlflow_uri,
 
@@ -109,7 +97,7 @@ class ModelTrainer:
 
     def initiate_model_trainer(self, X_train_transformed, X_val_transformed, y_train, y_val):
         # Start an MLflow run
-        with mlflow.start_run(run_name="LGBM_Training"):  # Set a run name for clarity
+        with mlflow.start_run(run_name="LogisticRegression_Training"):  # Set a run name for clarity
 
             # Initialize the Stratified K-Fold cross-validator
             skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
@@ -121,25 +109,17 @@ class ModelTrainer:
                 y_train_fold, y_val_fold = y_train.iloc[train_index], y_train.iloc[val_index]
 
                 # Train the model on the training fold
-                lgbm_model = LGBMClassifier(
-                    boosting_type=self.config.boosting_type,
-                    max_depth=self.config.max_depth,
-                    learning_rate=self.config.learning_rate,
-                    n_estimators=self.config.n_estimators,
-                    objective=self.config.objective,
-                    min_split_gain=self.config.min_split_gain,
-                    min_child_weight=self.config.min_child_weight,
-                    reg_alpha=self.config.reg_alpha,
-                    reg_lambda=self.config.reg_lambda,
-                    random_state=self.config.random_state,
-                    min_child_samples=self.config.min_child_samples,
+                lr_model = LogisticRegression(
+                    solver=self.config.solver,
+                    penalty=self.config.penalty,
+                    C=self.config.C,
+                    max_iter=self.config.max_iter,
                     verbose=0,
-                    force_row_wise=True
                 )
-                lgbm_model.fit(X_train_fold, y_train_fold)
+                lr_model.fit(X_train_fold, y_train_fold)
 
                 # Validate the model on the validation fold
-                y_val_pred = lgbm_model.predict(X_val_fold)
+                y_val_pred = lr_model.predict(X_val_fold)
 
                 # Evaluate the model
                 fold_f1 = f1_score(y_val_fold, y_val_pred, average='macro')
@@ -157,32 +137,25 @@ class ModelTrainer:
             mlflow.log_metric("avg_f1_score", avg_f1)
 
             # Final training on full training set
-            lgbm_model.fit(X_train_transformed, y_train)
+            lr_model.fit(X_train_transformed, y_train)
 
             # Log model hyperparameters
-            mlflow.log_param("boosting_type", self.config.boosting_type)
-            mlflow.log_param("max_depth", self.config.max_depth)
-            mlflow.log_param("learning_rate", self.config.learning_rate)
-            mlflow.log_param("n_estimators", self.config.n_estimators)
-            mlflow.log_param("objective", self.config.objective)
-            mlflow.log_param("min_split_gain", self.config.min_split_gain)
-            mlflow.log_param("min_child_weight", self.config.min_child_weight)
-            mlflow.log_param("reg_alpha", self.config.reg_alpha)
-            mlflow.log_param("reg_lambda", self.config.reg_lambda)
-            mlflow.log_param("random_state", self.config.random_state)
-            mlflow.log_param("min_child_samples", self.config.min_child_samples)
+            mlflow.log_param("solver", self.config.solver)
+            mlflow.log_param("penalty", self.config.penalty)
+            mlflow.log_param("C", self.config.C)
+            mlflow.log_param("max_iter", self.config.max_iter)
 
             # Save the model
             model_path = os.path.join(self.config.root_dir, self.config.model_name)
-            joblib.dump(lgbm_model, model_path)
+            joblib.dump(lr_model, model_path)
 
             # Log model artifact in MLflow
             mlflow.log_artifact(model_path)
 
             # Register the model in MLflow
-            mlflow.sklearn.log_model(lgbm_model, "model")
+            mlflow.sklearn.log_model(lr_model, "model")
             mlflow.register_model(
-                "runs:/" + mlflow.active_run().info.run_id + "/model", "MyLGBMModel" 
+                "runs:/" + mlflow.active_run().info.run_id + "/model", "MyLogisticRegressionModel" 
             )
 
         # End the MLflow run from the training 

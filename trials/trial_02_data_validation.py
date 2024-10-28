@@ -1,3 +1,6 @@
+# v0.0.2
+# Logistic Regression Model
+
 # Importing necessary libraries to handle entities and configuration
 from dataclasses import dataclass
 from pathlib import Path

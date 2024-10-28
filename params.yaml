@@ -1,12 +1,6 @@
-LGBMClassifier:
-  boosting_type: gbdt
-  max_depth: -1
-  learning_rate: 0.01
-  n_estimators: 100
-  objective: multiclass
-  min_split_gain: 0.0
-  min_child_weight: 0.001
-  reg_alpha: 0.0
-  reg_lambda: 0.0
-  random_state: 42
-  min_child_samples: 20
+LogisticRegression:
+  solver: saga
+  penalty: l2
+  C: 1
+  max_iter: 2000
+  

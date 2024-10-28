@@ -1,8 +1,10 @@
+# v0.0.2
+# Logistic Regression Model
 artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  mongo_uri: mongodb+srv://username:password@mychurndb.bjfry.mongodb.net/
+  mongo_uri: mongodb+srv://sunzou:hisansanju@mychurndb.bjfry.mongodb.net/
   database_name: customer_churn
   collection_name: transformed_churndb
 
@@ -70,20 +72,20 @@ model_trainer:
   root_dir: artifacts/model_trainer
   train_data_path: artifacts/data_transformation/X_train_transformed.joblib
   val_data_path: artifacts/data_transformation/X_val_transformed.joblib
-  model_name: model.joblib
+  model_name: model_logistic_regression.joblib
   mlflow_uri: https://dagshub.com/Sanju-Shrestha/Customer-Churn-Prediction.mlflow
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
   test_data_path: artifacts/data_transformation/X_val_transformed.joblib
   test_target_variable: artifacts/data_transformation/y_val.csv
-  model_path: artifacts/model_trainer/model.joblib
+  model_path: artifacts/model_trainer/model_logistic_regression.joblib
   metric_file_name: artifacts/model_evaluation/evaluation_metrics.json
   mlflow_uri: https://dagshub.com/Sanju-Shrestha/Customer-Churn-Prediction.mlflow
 
 model_validation:
   root_dir: artifacts/model_validation
-  model_path: artifacts/model_trainer/model.joblib
+  model_path: artifacts/model_trainer/model_logistic_regression.joblib
   test_data_path: artifacts/data_transformation/X_test_transformed.joblib
   test_target_variable: artifacts/data_transformation/y_test.csv
   metric_file_name: artifacts/model_validation/validation_metrics.json

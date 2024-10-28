@@ -1,3 +1,6 @@
+# v0.0.2
+# Logistic Regression Model
+
 import os
 import pandas as pd
 import numpy as np

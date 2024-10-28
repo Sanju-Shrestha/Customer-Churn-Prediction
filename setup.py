@@ -12,7 +12,7 @@ def get_requirements(file_path:str) -> List[str]:
         if HYPHEN_E_DOT in requirements:
             requirements.remove(HYPHEN_E_DOT)
 
-__version__ = '0.0.1'
+__version__ = '0.0.2'
 SRC_REPO = 'customer_churn'
 
 setup(

@@ -1,3 +1,6 @@
+# v0.0.2
+# Logistic Regression Model
+
 from dataclasses import dataclass
 from pathlib import Path
 import pymongo

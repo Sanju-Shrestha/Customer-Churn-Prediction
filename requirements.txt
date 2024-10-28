@@ -15,11 +15,8 @@ pymongo
 streamlit
 pip-chill==1.0.3
 
-LightGBM
 category_encoders
 requests
-Flask-Mail
-mailtrap
 psycopg2
 
 # mlflow 

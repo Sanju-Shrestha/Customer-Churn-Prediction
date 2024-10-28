@@ -1,3 +1,6 @@
+# v0.0.2
+# Logistic Regression Model
+
 from src.customer_churn import logging
 from src.customer_churn.pipelines.pipe_01_data_ingestion import DataIngestionPipeline
 from src.customer_churn.pipelines.pipe_02_data_validation import DataValidationPipeline
