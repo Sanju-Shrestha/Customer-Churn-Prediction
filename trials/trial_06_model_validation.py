@@ -1,3 +1,6 @@
+# v0.0.2
+# Logistic Regression Model
+
 from dataclasses import dataclass 
 from pathlib import Path
 from src.customer_churn.utils.commons import read_yaml, save_json, create_directories
@@ -10,7 +13,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, average_precision_score, 
                              classification_report, confusion_matrix, roc_curve, auc, precision_recall_curve)
 from sklearn.preprocessing import label_binarize
-from lightgbm import LGBMClassifier
+from sklearn.linear_model import LogisticRegression
 
 import mlflow
 import dagshub
@@ -42,7 +45,7 @@ class ConfigurationManager:
 
     def get_model_validation_config(self) -> ModelValidationConfig:
         config = self.config.model_validation
-        params = self.params.LGBMClassifier  # Ensure correct parameter usage
+        params = self.params.LogisticRegression  # Ensure correct parameter usage
         schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])

@@ -60,4 +60,4 @@ stages:
     outs:
       - artifacts/model_validation/pr_curve.png
       - artifacts/model_validation/roc_curve.png
-      - artifacts/model_validation/validation_metrics.json
+      - artifacts/model_validation/validation_metrics_lr.json

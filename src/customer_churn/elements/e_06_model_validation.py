@@ -129,4 +129,3 @@ class ModelValidation:
                 self.config.root_dir, 'roc_curve.png'))
             mlflow.log_artifact(os.path.join(
                 self.config.root_dir, 'pr_curve.png'))
-
