@@ -10,7 +10,7 @@ This repository builds a machine learning model that predicts the churn risk sco
 
 Credits: This dataset is sourced from a machine learning challenge conducted by HackerEarth. You can learn more about the challenge at the official HackerEarth page [here](https://www.hackerearth.com/challenges/competitive/hackerearth-machine-learning-challenge-predict-customer-churn/).
 
-This repository contains an end-to-end MLOps pipeline for predicting customer churn using a machine learning model. The project implements various stages of the MLOps lifecycle, including data ingestion, validation, transformation, model training, evaluation, and validation using tools like MongoDB Atlas, LightGBM, DVC, MLflow, and Dagshub.
+This repository contains an end-to-end MLOps pipeline for predicting customer churn using a machine learning model. The project implements various stages of the MLOps lifecycle, including data ingestion, validation, transformation, model training, evaluation, and validation using tools like MongoDB Atlas, LightGBM (v0.0.1), Logistic Regression (v0.0.2), DVC, MLflow, and Dagshub.
 
 ## Project Structure
 
@@ -47,7 +47,7 @@ customer_churn_prediction/
 │   ├── Trial_01_Data_Ingestion.py    # Initial trial for data ingestion
 │   ├── Trial_02_Data_Validation.py   # Initial trial for data validation
 │   ├── Trial_03_Data_Transformation.py
-│   ├── Trial_04_Model_Trainer.py     # Using LightGBM
+│   ├── Trial_04_Model_Trainer.py     # Using Logistic Regression (v0.0.2)
 │   ├── Trial_05_Model_Evaluation.py
 │   └── Trial_06_Model_Validation.py
 ├── dvc.yaml                          # DVC pipeline definition
@@ -65,7 +65,7 @@ customer_churn_prediction/
 
   * Data Version Control (DVC): DVC is used for tracking datasets and model versions.
 
-  * Machine Learning Model: LightGBM is used as the machine learning model for churn prediction. The training process is modularized into stages such as data ingestion, validation, transformation, training, evaluation, and validation.
+  * Machine Learning Model: Logistic Regression (v0.0.2) is used as the machine learning model for churn prediction. The training process is modularized into stages such as data ingestion, validation, transformation, training, evaluation, and validation.
 
   * MLflow & Dagshub: MLflow is used for tracking experiments, and Dagshub is integrated to monitor and collaborate on the project.
 
@@ -113,7 +113,7 @@ customer_churn_prediction/
 	* MongoDB Atlas account
 	* DVC
 	* MLflow
-	* HanckerEarth login access (for dataset)
+	* HackerEarth login access (for dataset)
 
 ## Installation
 
