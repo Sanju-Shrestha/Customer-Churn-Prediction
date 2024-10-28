@@ -1,3 +1,5 @@
+# v0.0.2
+# Logistic Regression Model
 
 from src.customer_churn.config.configuration import ConfigurationManager
 from src.customer_churn.elements.e_05_model_evaluation import ModelEvaluation

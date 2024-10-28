@@ -9,7 +9,7 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_s
                               classification_report, confusion_matrix, roc_curve, auc, precision_recall_curve)
 from sklearn.preprocessing import label_binarize
 from sklearn.multiclass import OneVsRestClassifier
-from lightgbm import LGBMClassifier
+from sklearn.linear_model import LogisticRegression
 
 # mlflow 
 import dagshub

@@ -38,7 +38,7 @@ stages:
       - config/config.yaml
 
     outs:
-      - artifacts/model_trainer/model.joblib
+      - artifacts/model_trainer/model_logistic_regression.joblib
 
   model_evaluation:
     cmd: python src/customer_churn/pipelines/pipe_05_model_evaluation.py
@@ -49,7 +49,7 @@ stages:
     outs:
       - artifacts/model_evaluation/pr_curve.png
       - artifacts/model_evaluation/roc_curve.png
-      - artifacts/model_evaluation/evaluation_metrics.json
+      - artifacts/model_evaluation/evaluation_metrics_lr.json
 
   model_validation:
     cmd: python src/customer_churn/pipelines/pipe_06_model_validation.py

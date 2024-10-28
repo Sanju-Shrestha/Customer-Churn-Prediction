@@ -80,7 +80,7 @@ model_evaluation:
   test_data_path: artifacts/data_transformation/X_val_transformed.joblib
   test_target_variable: artifacts/data_transformation/y_val.csv
   model_path: artifacts/model_trainer/model_logistic_regression.joblib
-  metric_file_name: artifacts/model_evaluation/evaluation_metrics.json
+  metric_file_name: artifacts/model_evaluation/evaluation_metrics_lr.json
   mlflow_uri: https://dagshub.com/Sanju-Shrestha/Customer-Churn-Prediction.mlflow
 
 model_validation:

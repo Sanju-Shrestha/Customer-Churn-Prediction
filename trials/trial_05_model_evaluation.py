@@ -13,7 +13,7 @@ from sklearn.metrics import (accuracy_score, precision_score, recall_score, f1_s
                               classification_report, confusion_matrix, roc_curve, auc, precision_recall_curve)
 from sklearn.preprocessing import label_binarize
 from sklearn.multiclass import OneVsRestClassifier
-from lightgbm import LGBMClassifier
+from sklearn.linear_model import LogisticRegression
 
 # mlflow 
 import dagshub
@@ -46,7 +46,7 @@ class ConfigurationManager:
 
     def get_model_evaluation_config(self) -> ModelEvaluationConfig:
         config = self.config.model_evaluation
-        params = self.params.LGBMClassifier  # Update to LGBMClassifier parameters
+        params = self.params.LogisticRegression  # Update to LogisticRegression parameters
         schema = self.schema.TARGET_COLUMN
 
         create_directories([config.root_dir])
